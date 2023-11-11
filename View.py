@@ -1,5 +1,5 @@
 def View ():
-    menu = int(input('Заметки -Общее меню: \n'
+    menu = int(input('Заметки - Общее меню: \n'
                     '1 - Создать заметку\n'
                     '2 - Edit note title\n'
                     '3 - Edit note body\n'
