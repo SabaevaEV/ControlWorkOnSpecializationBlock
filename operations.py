@@ -8,9 +8,9 @@ class NoteOperations:
         self.load_notes()
 
     def add_note(self):
+        note_id = len(self.notes) + 1
         title = input("Введите Заголовок заметки")
         body = input("Введите заметку")
-        note_id = len(self.notes) + 1
         note = Note(note_id, title, body=body)
         self.notes.append(note)
         self.save_notes()

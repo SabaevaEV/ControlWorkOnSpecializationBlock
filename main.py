@@ -1,12 +1,11 @@
 import operations
 import view
-from view import View
 
-if __name__ == "__main__":
 
+def main():
     notebook = operations.NoteOperations()
     while True:
-        number = view.View()
+        number = view.Menu()
         if number == "1":
             notebook.add_note()
         elif number == "2":
@@ -33,3 +32,7 @@ if __name__ == "__main__":
             break
         else:
             print("Неверная команда")
+
+
+if __name__ == '__main__':
+    main()
