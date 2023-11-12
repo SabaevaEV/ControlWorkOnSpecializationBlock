@@ -1,16 +1,13 @@
-import noteBook as noteBook
-
+import operations
 import view
-from operations import *
 from view import View
 
 if __name__ == "__main__":
-    # notes = load_notes()
-    # notebook = noteApp.NoteApp()
+
     View()
-    notebook = noteBook.NoteOperation()
+    notebook = operations.NoteOperations()
     while True:
-        number = view.menu
+        number = view.View()
         if number == "1":
             notebook.add_note()
         elif number == "2":
