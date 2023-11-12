@@ -70,17 +70,19 @@ class NoteOperations:
 
     def save_notes(self):
         data = []
-        # for note in self.notes:
-        #     note_data = {'note_id': note.note_id, 'title': note.title, 'body': note.body,
-        #                  'create_time': note.create_time}
-        #     data.append(note_data)
-        # with open("notes.json", "w") as file:
-        #     json.dump(data, file, indent=4)
+        for note in self.notes:
+            note_data = {'note_id': note.note_id, 'title': note.title, 'body': note.body,
+                         'create_time': note.create_time}
+            data.append(note_data)
         with open("notes.json", "w") as file:
-            json.dump(data, file)
+            json.dump(data, file, indent=4)
+
     def load_notes(self):
         try:
             with open("notes.json", "r") as file:
-                return json.load(file)
-        except (FileNotFoundError, json.decoder.JSONDecodeError):
+                data = json.load(file)
+                for note_data in data:
+                    note = Note(note_data['note_id'], note_data['title'], note_data['body'], note_data['create_time'])
+                    self.notes.append(note)
+        except FileNotFoundError:
             self.notes = []
