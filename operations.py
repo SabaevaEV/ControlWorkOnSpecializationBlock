@@ -14,22 +14,29 @@ def add_note(self, title, body):
     self.save_notes()
     print('Заметка успешно сохранена')
 
-def read_notes():
-    filter_date = input("Введите дату для фильтрации (в формате ГГГГ-ММ-ДД): ")
-    if not notes:
-        print("Заметок нет")
-        return
-    if not filter_date:
-        for note in notes:
-            print(f"{note['id']}. {note['title']} ({note['date']})\n{note['msg']}\n")
+# def read_notes():
+#     filter_date = input("Введите дату для фильтрации (в формате ГГГГ-ММ-ДД): ")
+#     if not notes:
+#         print("Заметок нет")
+#         return
+#     if not filter_date:
+#         for note in notes:
+#             print(f"{note['id']}. {note['title']} ({note['date']})\n{note['msg']}\n")
+#     else:
+#         filtered_notes = [note for note in notes if note["date"].startswith(filter_date)]
+#         if filtered_notes:
+#             for note in filtered_notes:
+#                 print(f"{note['id']}. {note['title']} ({note['date']})\n{note['msg']}\n")
+#         else:
+#             print("Заметок с указанной датой нет")
+def view_all_notes(self):
+    if self.notes:
+        print("Все заметки")
+        for note in self.notes:
+            print(note)
+        input("Нажмите номер для продолжения")
     else:
-        filtered_notes = [note for note in notes if note["date"].startswith(filter_date)]
-        if filtered_notes:
-            for note in filtered_notes:
-                print(f"{note['id']}. {note['title']} ({note['date']})\n{note['msg']}\n")
-        else:
-            print("Заметок с указанной датой нет")
-
+        print("Заметки не найдены")
 def edit_note_tit(self, note_id, new_title):
     for note in self.notes:
         if note.note_id == note_id:
@@ -50,13 +57,12 @@ def edit_note_body(self, note_id, new_body):
             return
     print(f"Заметка с id {note_id} не найдена")
 
-def delete_note():
-    note_id = int(input("Введите id заметки для удаления: "))
-    for note in notes:
-        if note["id"] == note_id:
-            notes.remove(note)
-            save_notes()
-            print("Заметка успешно удалена")
+def delete_note(self, note_id):
+    for note in self.notes:
+        if note.note_id == note_id:
+            self.notes.remove(note)
+            self.save_notes()
+            print("Заметка удалена")
             return
     print(f"Заметка с id {note_id} не найдена")
 
