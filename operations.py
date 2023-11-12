@@ -45,6 +45,11 @@ def read_notes_by_date(self):
         print("Заметок нет")
     return filter_notes
 
+def view_filter_note(self, note_id, note):
+    print(f"ID: {note.note_id}")
+    print(f"Title: {note.title}")
+    print(f"Body: {note.body}")
+    print(f"Date: {note.date}")
 
 def view_all_notes(self):
     if self.notes:
