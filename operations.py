@@ -14,21 +14,6 @@ def add_note(self, title, body):
     self.save_notes()
     print('Заметка успешно сохранена')
 
-def read_notes():
-    filter_date = input("Введите дату для фильтрации (в формате ГГГГ-ММ-ДД): ")
-    if not notes:
-        print("Заметок нет")
-        return
-    if not filter_date:
-        for note in notes:
-            print(f"{note['id']}. {note['title']} ({note['date']})\n{note['msg']}\n")
-    else:
-        filtered_notes = [note for note in notes if note["date"].startswith(filter_date)]
-        if filtered_notes:
-            for note in filtered_notes:
-                print(f"{note['id']}. {note['title']} ({note['date']})\n{note['msg']}\n")
-        else:
-            print("Заметок с указанной датой нет")
 
 def read_notes_by_date(self):
     date = input("Введите дату (ГГГГ-ММ-ДД): ")
