@@ -9,7 +9,8 @@ class NoteOperations:
 
     def add_note(self, title, body):
         note_id = len(self.notes) + 1
-        note = Note(note_id, title, body)
+        create_time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+        note = Note(note_id, title, body, create_time)
         self.notes.append(note)
         self.save_notes()
         print('Заметка успешно сохранена')
@@ -52,7 +53,7 @@ class NoteOperations:
         for note in self.notes:
             if note.note_id == note_id:
                 note.body = new_body
-                note.date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                note.create_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 self.save_notes()
                 print("Заметка успешно отредактирована")
                 return
@@ -70,7 +71,8 @@ class NoteOperations:
     def save_notes(self):
         data = []
         for note in self.notes:
-            note_data = {'note_id': note.note_id, 'title': note.title, 'body': note.body}
+            note_data = {'note_id': note.note_id, 'title': note.title, 'body': note.body,
+                         'create_time': note.create_time}
             data.append(note_data)
         with open("notes.json", "w") as file:
             json.dump(data, file, indent=4)
@@ -80,7 +82,7 @@ class NoteOperations:
             with open("notes.json", "r") as file:
                 data = json.load(file)
                 for note_data in data:
-                    note = Note(note_data['note_id'], note_data['title'], note_data['body'])
+                    note = Note(note_data['note_id'], note_data['title'], note_data['body'], note_data['create_time'])
                     self.notes.append(note)
         except (FileNotFoundError, json.decoder.JSONDecodeError):
             self.notes = []
