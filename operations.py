@@ -7,7 +7,7 @@ def __init__(self):
     self.notes = []
     self.load_notes()
 
- def add_note(self, title, body):
+def add_note(self, title, body):
     note_id = len(self.notes) + 1
     note = Note(note_id, title, body)
     self.notes.append(note)
