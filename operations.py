@@ -30,18 +30,22 @@ def read_notes():
         else:
             print("Заметок с указанной датой нет")
 
-def edit_note():
-    note_id = int(input("Введите id заметки для редактирования: "))
-    for note in notes:
-        if note["id"] == note_id:
-            title = input(f"Введите новый заголовок заметки ({note['title']}): ")
-            msg = input(f"Введите новое тело заметки ({note['msg']}): ")
-            if title:
-                note["title"] = title
-            if msg:
-                note["msg"] = msg
-            note["date"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            save_notes()
+def edit_note_tit(self, note_id, new_title):
+    for note in self.notes:
+        if note.note_id == note_id:
+            note.title = new_title
+            note.date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.save_notes()
+            print("Заголовок заметки успешно отредактирована")
+            return
+    print(f"Заметка с id {note_id} не найдена")
+
+def edit_note_body(self, note_id, new_body):
+    for note in self.notes:
+        if note.note_id == note_id:
+            note.body = new_body
+            note.date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.save_notes()
             print("Заметка успешно отредактирована")
             return
     print(f"Заметка с id {note_id} не найдена")
