@@ -36,6 +36,10 @@ class NoteOperations:
             print("Все заметки")
             for note in self.notes:
                 print(note)
+                print(f"ID: {note.note_id}\n"
+                      f"Title: {note.title}\n"
+                      f"Body: {note.body}\n"
+                      f"{note.create_time}\n\n")
             input("Нажмите для продолжения")
         else:
             print("Заметки не найдены")

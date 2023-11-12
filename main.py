@@ -6,19 +6,19 @@ def main():
     while True:
         num = view.Menu()
         if num == 1:
-            title = input("Введите Заголовок заметки")
-            body = input("Введите заметку")
+            title = input("Введите Заголовок заметки: ")
+            body = input("Введите заметку: ")
             notebook.add_note(title=title, body=body)
         elif num == 2:
-            note_id = int(input('Введите номер заметки'))
-            new_title = input('Введите новый заголовок заметки')
+            note_id = int(input('Введите номер заметки: '))
+            new_title = input('Введите новый заголовок заметки: ')
             notebook.edit_note_tit(note_id=note_id, new_title=new_title)
         elif num == 3:
-            note_id = int(input('Введите номер заметки'))
-            new_body = input('Введите новую заметку')
+            note_id = int(input('Введите номер заметки: '))
+            new_body = input('Введите новую заметку: ')
             notebook.edit_note_body(note_id=note_id, new_body=new_body)
         elif num == 4:
-            note_id = int(input('Введите номер заметки'))
+            note_id = int(input('Введите номер заметки: '))
             for note in notebook.notes:
                 if note.note_id == note_id:
                     notebook.view_filter_note(note.note_id, note)
@@ -32,7 +32,7 @@ def main():
         elif num == 6:
             notebook.view_all_notes()
         elif num == 7:
-            note_id = int(input('Введите номер заметки'))
+            note_id = int(input('Введите номер заметки: '))
             notebook.delete_note(note_id=note_id)
         elif num == 8:
             print('Выход')
