@@ -7,23 +7,15 @@ class NoteOperations:
         self.notes = []
         self.load_notes()
 
-    def add_note(self):
+    def add_note(self, title, body):
         note_id = len(self.notes) + 1
-        title = input("Введите Заголовок заметки")
-        body = input("Введите заметку")
-        note = Note(note_id, title, body=body)
+        note = Note(note_id, title, body)
         self.notes.append(note)
         self.save_notes()
         print('Заметка успешно сохранена')
 
-
     def read_notes_by_date(self):
         date = input("Введите дату (ГГГГ-ММ-ДД): ")
-        # try:
-        #     date_check = datetime.strptime(date, '%d-%m-%Y').date()
-        # except ValueError:
-        #     raise ValueError('Invalid date format. Please enter the date in dd-mm-yy format.')
-
         filter_notes = []
         for note in self.notes:
             if note.date.split()[0] == date:
@@ -78,7 +70,7 @@ class NoteOperations:
     def save_notes(self):
         data = []
         for note in self.notes:
-            note_data = {'note_id': note.note_id, 'title': note.title, 'body': note.body, 'date': note.date}
+            note_data = {'note_id': note.note_id, 'title': note.title, 'body': note.body}
             data.append(note_data)
         with open("notes.json", "w") as file:
             json.dump(data, file, indent=4)
@@ -88,7 +80,7 @@ class NoteOperations:
             with open("notes.json", "r") as file:
                 data = json.load(file)
                 for note_data in data:
-                    note = Note(note_data['note_id'], note_data['title'], note_data['body'], note_data['data'])
+                    note = Note(note_data['note_id'], note_data['title'], note_data['body'])
                     self.notes.append(note)
         except (FileNotFoundError, json.decoder.JSONDecodeError):
             self.notes = []
