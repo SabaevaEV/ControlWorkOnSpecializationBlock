@@ -4,7 +4,6 @@ from view import View
 
 if __name__ == "__main__":
 
-    View()
     notebook = operations.NoteOperations()
     while True:
         number = view.View()
