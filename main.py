@@ -1,5 +1,5 @@
-from Operations import *
-from View import View
+from operations import *
+from view import View
 
 if __name__ == "__main__":
     notes = load_notes()
