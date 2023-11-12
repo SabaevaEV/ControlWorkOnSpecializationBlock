@@ -16,15 +16,17 @@ class NoteOperations:
         print('Заметка успешно сохранена')
 
     def read_notes_by_date(self):
-        date = input("Введите дату (дд-мм-гг/ через -): ")
-        filter_notes = []
-        for note in self.notes:
-            if note.create_time.split()[0] == date:
-                filter_notes.append(note)
-        if not filter_notes:
-            print("Заметок нет")
-        return filter_notes
-
+        try:
+            date = input("Введите дату (дд-мм-гг/ через -): ")
+            filter_notes = []
+            for note in self.notes:
+                if note.create_time.split()[0] == date:
+                    filter_notes.append(note)
+            if not filter_notes:
+                print("Заметок нет")
+            return filter_notes
+        except ValueError as e:
+            print('Ошибка, введены данные неверного формата', e)
     def view_filter_note(self, note_id, note):
         print(f"ID: {note.note_id}")
         print(f"Title: {note.title}")
