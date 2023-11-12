@@ -16,10 +16,10 @@ class NoteOperations:
         print('Заметка успешно сохранена')
 
     def read_notes_by_date(self):
-        date = input("Введите дату (ГГГГ-ММ-ДД): ")
+        date = input("Введите дату (дд-мм-гг/ через -): ")
         filter_notes = []
         for note in self.notes:
-            if note.date.split()[0] == date:
+            if note.create_time.split()[0] == date:
                 filter_notes.append(note)
         if not filter_notes:
             print("Заметок нет")
