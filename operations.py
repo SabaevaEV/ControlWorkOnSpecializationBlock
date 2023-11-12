@@ -56,13 +56,20 @@ def delete_note():
             return
     print(f"Заметка с id {note_id} не найдена")
 
-def save_notes():
-    with open("notes.json", "w") as f:
-        json.dump(notes, f)
+def save_notes(self):
+    data = []
+    for note in self.notes:
+        note_data = {'note_id': note.note_id, 'title': note.title, 'body': note.body, 'date': note.date}
+        data.append(note_data)
+    with open("notes.json", "w") as file:
+        json.dump(data, file, indent=4)
 
-def load_notes():
+def load_notes(self):
     try:
-        with open("notes.json", "r") as f:
-            return json.load(f)
+        with open("notes.json", "r") as file:
+            data = json.load(file)
+            for note_data in data:
+                note = Note(note_data['note_id'], note_data['title'], note_data['body'], note_data['data'])
+                self.notes.append(note)
     except (FileNotFoundError, json.decoder.JSONDecodeError):
-        return []
+        self.notes = []
