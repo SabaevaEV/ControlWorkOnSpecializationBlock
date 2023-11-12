@@ -29,14 +29,14 @@ class NoteOperations:
         print(f"ID: {note.note_id}")
         print(f"Title: {note.title}")
         print(f"Body: {note.body}")
-        print(f"Date: {note.date}")
+        print(f"Date: {note.create_time}")
 
     def view_all_notes(self):
         if self.notes:
             print("Все заметки")
             for note in self.notes:
                 print(note)
-            input("Нажмите номер для продолжения")
+            input("Нажмите для продолжения")
         else:
             print("Заметки не найдены")
     def edit_note_tit(self, note_id, new_title):

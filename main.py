@@ -18,11 +18,12 @@ def main():
             new_body = input('Введите новую заметку')
             notebook.edit_note_body(note_id=note_id, new_body=new_body)
         elif num == 4:
-            selected_note = view.input_4(notebook.notes)
-            if selected_note is not None:
-                notebook.view_filter_note(selected_note.note_id, selected_note)
-            else:
-                print("Заметка не найдена")
+            note_id = int(input('Введите номер заметки'))
+            for note in notebook.notes:
+                if note.note_id == note_id:
+                    notebook.view_filter_note(note.note_id, note)
+                else:
+                    print("Заметка не найдена")
         elif num == 5:
             notes = notebook.read_notes_by_date()
             if notes:
